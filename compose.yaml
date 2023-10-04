@@ -1,0 +1,38 @@
+services:
+  web:
+    image: terrastories/terrastories:latest
+    ports:
+      - 80:3000
+    environment:
+      - RAILS_ENV=offline
+      - USE_LOCAL_MAP_SERVER=true
+      - OFFLINE_MAP_STYLE=${OFFLINE_MAP_STYLE-http://terrastories.local:8080/styles/terrastories-map/style.json}
+      - DATABASE_URL=${DATABASE_URL-postgresql://terrastories:terrastories@host.docker.internal:5432/terrastories}
+    env_file: .env
+    volumes:
+      - ./media:/media
+      - ./import:/import/media
+
+  tileserver:
+    image: maptiler/tileserver-gl
+    restart: unless-stopped
+    command: "--port 8080 --public_url http://terrastories.local:8080"
+    ports:
+      - 8080:8080
+    volumes:
+      - ./tileserver:/data
+
+  postgresql:
+    image: postgres:11
+    restart: unless-stopped
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=terrastories
+      - POSTGRES_PASSWORD=terrastories
+    volumes:
+      - ./db/:/docker-entrypoint-initdb.d/
+      - terrastories_db:/var/lib/postgresql/data
+
+volumes:
+  terrastories_db:

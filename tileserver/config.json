@@ -1,0 +1,22 @@
+{
+  "options": {
+    "paths": {
+      "fonts": "fonts",
+    "sprites": "sprites",
+     "styles": "styles"
+    }
+  },
+  "data": {
+    "terrastories-map": {
+      "mbtiles": "mbtiles/terrastories-map.mbtiles"
+    }
+  },
+  "styles": {
+    "terrastories-map": {
+      "style": "terrastories-map.json",
+      "tilejson": {
+        "type": "overlay"
+      }
+    }
+  }
+}
