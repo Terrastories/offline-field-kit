@@ -1,0 +1,2 @@
+*.mbtiles filter=lfs diff=lfs merge=lfs -text
+*.mbtiles !text !filter !merge !diff
