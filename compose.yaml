@@ -33,6 +33,8 @@ services:
     volumes:
       - ./db/:/docker-entrypoint-initdb.d/
       - terrastories_db:/var/lib/postgresql/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
   terrastories_db:
