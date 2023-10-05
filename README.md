@@ -20,6 +20,7 @@ linux/amd64, linux/arm64, linux/arm/v7
 
 ### Quick Start
 
+1. Set up your [Tileserver](tileserver/README.md) configuration.
 1. Update your /etc/hosts file to include:
 
    ```

@@ -20,7 +20,7 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./tileserver:/data
+      - ./tileserver/data:/data
 
   postgresql:
     image: postgres:11
