@@ -30,9 +30,9 @@ linux/amd64, linux/arm64, linux/arm/v7
    This will allow you to access Terrastories from this URL.
 1. Run:
 
-  `docker compose up`
+   `docker compose up`
 
-  This will download the latest production-ready image and boot a fully configured Terrastories instance, database, and tileserver.
+   This will download the latest production-ready image and boot a fully configured Terrastories instance, database, and tileserver.
 
 ## Advanced Setup
 
