@@ -20,6 +20,13 @@ OFFLINE_MAP_STYLE=terrastories-map
 OFFLINE_MAP_STYLE=your-style-name
 ```
 
+## Using our default Map Package
+
+Everything except our tiles is contained in this repository. To use our default map package:
+
+1. [Download our tiles](https://bit.ly/45LGigh)
+2. Place it in the `terrastories-map` folder (terrastories-map/tiles.pmtiles)
+
 ## Adding Custom Map Packages
 
 You may add as many map packages to Terrastories as you want, but they must adhere to the following conditions:
