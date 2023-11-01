@@ -20,8 +20,8 @@ linux/amd64, linux/arm64, linux/arm/v7
 
 ### Quick Start
 
-1. Set up your [Tileserver](tileserver/README.md) configuration.
-1. Update your /etc/hosts file to include:
+1. Set up your [Map Package](map/README.md) configuration.
+1. Update your `/etc/hosts` file to include:
 
    ```
    127.0.0.1 terrastories.local
@@ -50,9 +50,19 @@ This must be a fully-qualified postgresql url to a database of your choice. It m
 
 This should be set to `offline`. By default, it sets the environment to our online `production` version.
 
-**OFFLINE_MAP_STYLE** (Required)
+**OFFLINE_MAP_STYLE**
 
-This must be a fully-qualified url to your [prepared offline maps](https://docs.terrastories.app/setting-up-a-terrastories-server/preparing-offline-maps). Our default maps are available in this repository under the /tileserver folder, which are free to use.
+This must be the style name of a protomap archived pmtiles style. See [map configuration](map/README.md) for how to set up custom map packages. Our default maps are available in this repository under the /map folder, which are free to use. Dwnload the [tiles.pmtiles](https://bit.ly/45LGigh) and place the file in the folder according to the instructions.
+
+**USE_PROTOMAPS**
+
+If you want Terrastories to load your map package in OFFILNE_MAP_STYLE, you must set USE_PROTOMAPS to any value.
+
+**TILESERVER_URL**
+
+This must be a fully-qualified url to your [prepared offline maps](https://docs.terrastories.app/setting-up-a-terrastories-server/preparing-offline-maps) hosted on a locally accessible Tileserver.
+
+Your Tileserver must allow CORS from terrastories.local or any origin.
 
 **HOST_HOSTNAME**
 
@@ -94,6 +104,12 @@ Assets that are referenced in import CSV files can be provided via a local folde
 
 Your folder must be mapped to: `/api/import/media` via a Docker volume.
 
+### Link static Protomaps (pmtiles) folder for maps
+
+If you wish to make use of our free OFFLINE_MAP_STYLE protomaps, you must set up the map package or follow the instructions in [maps](map/README.md).
+
+Once set up, you must map the volume to: `/api/public/map` via a Docker volume. We recommend configuring this to a readonly volume (:ro).
+
 ### And run with Docker
 
 ```sh
@@ -102,9 +118,10 @@ docker run
   -p 80:3000
   -e RAILS_ENV=offline
   -e DATABASE_URL=postgresql://user:pass@host:5432/terrastories
-  -e OFFLINE_MAP_STYLE=http://localhost:8080/styles/your-style-name/style.json
+  -e TILESERVER_URL=http://localhost:8080/styles/your-style-name/style.json
   -v $(pwd)/media:/media
   -v $(pwd)/import:/api/import/media
+  -v $(pwd)/map:/api/public/map:ro
   --name terrastories-field-kit
   terrastories/terrastories:latest
 ```
@@ -121,12 +138,13 @@ services:
       - 80:3000
     environment:
       - RAILS_ENV=offline
-      - USE_LOCAL_MAP_SERVER=true
-      - OFFLINE_MAP_STYLE=http://localhost:8080/styles/your-style-name/style.json
+      - HOST_HOSTNAME=terrastories.local
+      - TILESERVER_URL=http://localhost:8080/styles/your-style-name/style.json
       - DATABASE_URL=postgresql://user:pass@host:5432/terrastories
     volumes:
       - ./media:/media
       - ./import:/api/import/media
+      - ./map:/api/public/map:ro
 ```
 
 and run `docker compose up` with your custom configuration.
