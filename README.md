@@ -18,7 +18,15 @@ linux/amd64, linux/arm64, linux/arm/v7
 
 - [**Docker Desktop**](https://docs.docker.com/desktop/install/linux-install/): This installs the Docker Engine and Compose V2.
 
-### Quick Start
+### Quick Start (Recommended)
+
+Run:
+
+```shell
+bash install.sh
+```
+
+### Manual Setup (Advanced)
 
 1. Set up your [Map Package](map/README.md) configuration.
 1. Update your `/etc/hosts` file to include:
@@ -52,7 +60,7 @@ This should be set to `offline`. By default, it sets the environment to our onli
 
 **OFFLINE_MAP_STYLE**
 
-This must be the style name of a protomap archived pmtiles style. See [map configuration](map/README.md) for how to set up custom map packages. Our default maps are available in this repository under the /map folder, which are free to use. Dwnload the [tiles.pmtiles](https://bit.ly/45LGigh) and place the file in the folder according to the instructions.
+This must be the style name of a protomap archived pmtiles style. See [map configuration](map/README.md) for how to set up custom map packages. Our default maps are available in this repository under the /map folder, which are free to use. Run `install.sh` to ensure the tiles are downloaded, or download our default [tiles.pmtiles](https://bit.ly/45LGigh) and place the file in the folder according to the instructions.
 
 **USE_PROTOMAPS**
 
@@ -106,7 +114,7 @@ Your folder must be mapped to: `/api/import/media` via a Docker volume.
 
 ### Link static Protomaps (pmtiles) folder for maps
 
-If you wish to make use of our free OFFLINE_MAP_STYLE protomaps, you must set up the map package or follow the instructions in [maps](map/README.md).
+If you wish to make use of our free OFFLINE_MAP_STYLE protomaps, you must set up the map package (run install.sh) or follow the instructions in [maps](map/README.md).
 
 Once set up, you must map the volume to: `/api/public/map` via a Docker volume. We recommend configuring this to a readonly volume (:ro).
 
