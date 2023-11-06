@@ -1,18 +1,19 @@
 services:
   web:
     image: terrastories/terrastories:latest
+    depends_on:
+      - db
     ports:
       - 80:3000
-    env_file: .env
+      - 3000:3000
     environment:
       - RAILS_ENV=offline
-      - HOST_HOSTNAME=${HOST_HOSTNAME-terrastories.local}
-      - OFFLINE_MAP_STYLE=${OFFLINE_MAP_STYLE-terrastories-map}
-      - DATABASE_URL=${DATABASE_URL-postgresql://terrastories:terrastories@db:5432/terrastories}
+      - HOST_HOSTNAME=terrastories.local
+      - DEFAULT_MAP_PACKAGE=${DEFAULT_MAP_PACKAGE-terrastories-map}
+      - DATABASE_URL=postgresql://terrastories:terrastories@db:5432/terrastories
     volumes:
       - ./media:/media
       - ./import:/api/import/media
-      - ./map:/api/public/map:ro
 
   db:
     image: postgres:11

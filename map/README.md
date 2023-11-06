@@ -1,6 +1,12 @@
-# Map Packages
+# Custom Map Packages
 
-All map packages in this folder are loaded into Terrastories.
+By default, our production image includes our default Terrastories Map Package. If you want to configure a custom map package to load as the default map package, this README will show you how to configure it.
+
+## Prerequisites
+
+Before you begin, ensure that you have a Custom Map Package generated. This should include your `.pmtiles` archive of tiles plus at `style.json` configuration.
+
+## Configuration
 
 Each map package is referenced by the folder name inside /map. Given the following directory structure:
 
@@ -10,22 +16,15 @@ map/
 └── your-style-name/
 ```
 
-You can configure which map package is accessed by specifying the style name in `OFFLINE_MAP_STYLE`:
+You can configure which map package is accessed by specifying the style name in `DEFAULT_MAP_PACKAGE`:
 
 ```
 # our default
-OFFLINE_MAP_STYLE=terrastories-map
+DEFAULT_MAP_PACKAGE=terrastories-map
 
 # your custom
-OFFLINE_MAP_STYLE=your-style-name
+DEFAULT_MAP_PACKAGE=your-style-name
 ```
-
-## Using our default Map Package
-
-Everything except our tiles is contained in this repository. To use our default map package:
-
-1. [Download our tiles](https://bit.ly/45LGigh)
-2. Place it in the `terrastories-map` folder (terrastories-map/tiles.pmtiles)
 
 ## Adding Custom Map Packages
 
@@ -46,19 +45,37 @@ You may add as many map packages to Terrastories as you want, but they must adhe
     ├── tiles.pmtiles
     └── style.json
     ```
-4. Your style specification must include fully-qualified URLs to your pmtiles, font glyphs, and sprites (if included):
+4. Your style specification must include fully-qualified URLs to your pmtiles and font glyphs:
     ```json
     {
       "sources": {
         "your-source-name": {
           "type": "vector",
-          "url": "http://terrastories.local/map/your-style-name/tiles.pmtiles"
+          "url": "pmtiles:///map/your-style-name/tiles.pmtiles"
         }
       },
-      "sprite": "http://terrastories.local/map/your-style-name/sprites/sprite",
-      "glyphs": "http://terrastories.local/map/your-style-name/fonts/{fontstack}/{range}.pbf",
+      "glyphs": "/map/your-style-name/fonts/{fontstack}/{range}.pbf",
       // the rest of your style specifications
     }
     ```
+    NOTE: Protomaps PMTiles Protocol currently does not support sprites. This feature is coming soon.
 
 In the future, we hope to streamline this process for you. For now, if you have any questions on how to configure your maps, please reach out to the Terrastories stewards team.
+
+## Configuring Terrastories to use your Custom Map Package
+
+> Note: Configuring a Custom Map Package soft overwrites the prepackaged maps in your container, making our default package inaccessible (`terrastories-map`). If you wish to revert to using our default map package, stop your server (Ctrl+C or `docker compose stop`) and then reboot without the additional configuration `docker compose up`.
+
+Once your Map Package is available in `/map/your-package-name`, you will need to run Terrastories using this command:
+
+```
+docker compose run -e DEFAULT_MAP_PACKAGE=your-package-name -v $(pwd)/map:/api/public/map:ro --service-ports web
+```
+
+while substituting `your-package-name` with the name of the folder in /map.
+
+This command is similar to "up", however, it requires additional configuration:
+
+-e creates the Environment Variable DEFAULT_MAP_PACKAGE and sets your package name
+-v binds the local /map folder into the container as a read only volume
+--service-ports ensures that the mapped ports in componse are enabled

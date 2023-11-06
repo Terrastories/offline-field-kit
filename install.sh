@@ -124,13 +124,6 @@ HOSTS
   fi
 fi
 
-# Download default .pmtiles
-ohai Configuring default map
-if [ ! -f map/terrastories-map/tiles.pmtiles ]; then
-  ohai Default tiles were not detected. Fetching them now.
-  curl -fsSL "https://bit.ly/45LGigh" -o "map/terrastories-map/tiles.pmtiles" --create-dirs
-fi
-
 # Boot Up
 ohai Starting your Terrastories Instance
 
