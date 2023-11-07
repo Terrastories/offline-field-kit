@@ -4,7 +4,7 @@ By default, our production image includes our default Terrastories Map Package. 
 
 ## Prerequisites
 
-Before you begin, ensure that you have a Custom Map Package generated. This should include your `.pmtiles` archive of tiles plus at `style.json` configuration.
+Before you begin, ensure that you have a Custom Map Package generated. This should include your `.pmtiles` archive of tiles and a `style.json` configuration. For more information on generating a Custom Map Package, see the [Terrastories docs](https://docs.terrastories.app).
 
 ## Configuration
 
@@ -58,13 +58,13 @@ You may add as many map packages to Terrastories as you want, but they must adhe
       // the rest of your style specifications
     }
     ```
-    NOTE: Protomaps PMTiles Protocol currently does not support sprites. This feature is coming soon.
+    *NOTE: Protomaps PMTiles Protocol currently does not support sprites. This feature is coming soon.*
 
 In the future, we hope to streamline this process for you. For now, if you have any questions on how to configure your maps, please reach out to the Terrastories stewards team.
 
 ## Configuring Terrastories to use your Custom Map Package
 
-> Note: Configuring a Custom Map Package soft overwrites the prepackaged maps in your container, making our default package inaccessible (`terrastories-map`). If you wish to revert to using our default map package, stop your server (Ctrl+C or `docker compose stop`) and then reboot without the additional configuration `docker compose up`.
+> Note: Configuring a Custom Map Package soft-overwrites the prepackaged maps in your container, making our default package (`terrastories-map`) inaccessible. If you wish to revert to using our default map package, stop your server (Ctrl+C or `docker compose stop`) and then reboot without the additional configuration `docker compose up`.
 
 Once your Map Package is available in `/map/your-package-name`, you will need to run Terrastories using this command:
 
@@ -72,10 +72,10 @@ Once your Map Package is available in `/map/your-package-name`, you will need to
 docker compose run -e DEFAULT_MAP_PACKAGE=your-package-name -v $(pwd)/map:/api/public/map:ro --service-ports web
 ```
 
-while substituting `your-package-name` with the name of the folder in /map.
+...while substituting `your-package-name` with the name of the folder in /map.
 
-This command is similar to "up", however, it requires additional configuration:
+This command is similar to "docker compose up", however, it requires additional configuration:
 
--e creates the Environment Variable DEFAULT_MAP_PACKAGE and sets your package name
--v binds the local /map folder into the container as a read only volume
---service-ports ensures that the mapped ports in componse are enabled
+* `-e` creates the Environment Variable DEFAULT_MAP_PACKAGE and sets your package name.
+* `-v` binds the local /map folder into the container as a read only volume.
+* `--service-ports` ensures that the mapped ports in compose are enabled.

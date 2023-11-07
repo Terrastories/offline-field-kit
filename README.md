@@ -2,7 +2,7 @@
 
 This repository is your one-stop shop for configuring and running a production-ready instance of Terrastories, completely disconnected from the internet.
 
-> While Terrastories can run offline once on your field kit, you will need a stable internet connection to setup and configure your instance.
+> While Terrastories can run entirely offline once your field kit is set up, you will need a stable internet connection to build and configure your instance.
 
 ## Supported Tags
 
@@ -26,9 +26,11 @@ Run:
 bash install.sh
 ```
 
+This will install Terrastories with the default map package. If you would like to go on to configure the usage of your own map package, please see [map/README.md](map/README.md).
+
 ### Manual Setup (Advanced)
 
-1. Set up your [Map Package](map/README.md) configuration.
+1. Set up your [Map Package](map/README.md) configuration first.
 1. Update your `/etc/hosts` file to include:
 
    ```
@@ -40,7 +42,7 @@ bash install.sh
 
    `docker compose up`
 
-   This will download the latest production-ready image and boot a fully configured Terrastories instance, database, and tileserver.
+   This will download the latest production-ready image and boot a fully configured Terrastories instance and database.
 
 ## Advanced Setup
 
