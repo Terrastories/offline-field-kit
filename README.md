@@ -110,7 +110,7 @@ Assets that are referenced in import CSV files can be provided via a local folde
 
 Your folder must be mapped to: `/api/import/media` via a Docker volume.
 
-### Link static Protomaps (pmtiles) folder for custom map packages (optional)
+#### Link static Protomaps (pmtiles) folder for custom map packages (optional)
 
 If you configured your own [Custom Map Packages](map/README.md), you must map the volume to: `/api/public/map` via a Docker volume. We recommend configuring this to a readonly volume (:ro).
 
