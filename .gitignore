@@ -1,1 +1,2 @@
-/map/**/tiles.pmtiles
+/map/**/*
+!/map/README.md
