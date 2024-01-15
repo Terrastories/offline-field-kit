@@ -126,8 +126,7 @@ fi
 
 if [ ! -f compose.yaml ]; then
   ohai Setting up your Terrastories dependencies
-  curl -fsSL "https://github.com/terrastories/offline-field-kit/archive/refs/heads/main.tar.gz" | tar xzf - && mv offline-field-kit-main terrastories
-  cd terrastories
+  curl -fsSL "https://github.com/terrastories/offline-field-kit/archive/refs/heads/main.tar.gz" | tar xzf - --strip-components=1
 fi
 
 # Boot Up
