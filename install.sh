@@ -124,6 +124,11 @@ HOSTS
   fi
 fi
 
+if [ ! -f compose.yaml ]; then
+  ohai Setting up your Terrastories dependencies
+  curl -fsSL "https://github.com/terrastories/offline-field-kit/archive/refs/heads/main.tar.gz" | tar xzf - && mv offline-field-kit-main terrastories && cd terrastories
+fi
+
 # Boot Up
 ohai Starting your Terrastories Instance
 

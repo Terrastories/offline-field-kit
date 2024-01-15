@@ -1,6 +1,8 @@
 services:
   web:
     image: terrastories/terrastories:latest
+    pull_policy: always
+    restart: unless-stopped
     depends_on:
       - db
     ports:
@@ -9,11 +11,17 @@ services:
     environment:
       - RAILS_ENV=offline
       - HOST_HOSTNAME=terrastories.local
-      - DEFAULT_MAP_PACKAGE=${DEFAULT_MAP_PACKAGE-terrastories-map}
+      - TILESERVER_URL=${TILESERVER_URL-http://terrastories.local:8080/styles/terrastories-map/style.json}
       - DATABASE_URL=postgresql://terrastories:terrastories@db:5432/terrastories
     volumes:
       - ./media:/media
       - ./import:/api/import/media
+
+  tileserver:
+    restart: unless-stopped
+    image: terrastories/terrastories-map:latest
+    ports:
+      - 8080:8080
 
   db:
     image: postgres:11
