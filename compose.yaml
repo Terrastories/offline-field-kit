@@ -1,7 +1,6 @@
 services:
   web:
     image: terrastories/terrastories:latest
-    pull_policy: always
     restart: unless-stopped
     depends_on:
       - db
