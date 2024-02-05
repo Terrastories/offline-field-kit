@@ -119,7 +119,7 @@ HOSTS
     fi
   else
     echo "Automatically configuring terrastories.local."
-    sudo -- sh -c "echo '# Added by Terrastories\n127.0.0.1 terrastories.local\n# End of section' >> /etc/hosts"
+    sudo -- bash -c "echo -e '# Added by Terrastories\n127.0.0.1 terrastories.local\n# End of section' >> /etc/hosts"
     echo -e "...${Green}done!${Off}"
   fi
 fi
