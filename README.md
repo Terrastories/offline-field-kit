@@ -6,7 +6,8 @@ This repository is your one-stop shop for configuring and running a production-r
 
 ## Supported Tags
 
-- v2.0.0, latest
+- v2.1.0, latest
+- v2.0.1
 
 **Supported architectures:** ([more info](https://github.com/docker-library/official-images#architectures-other-than-amd64))
 
