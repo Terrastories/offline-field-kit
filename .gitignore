@@ -1,2 +1,5 @@
-/map/**/*
+/map/data/**/*
+!/map/data/fonts/.keep
+!/map/data/sprites/.keep
+!/map/data/config.json
 !/map/README.md

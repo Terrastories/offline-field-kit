@@ -1,0 +1,17 @@
+{
+  "options": {
+    "paths": {
+      "fonts": "fonts",
+	    "sprites": "sprites"
+    },
+    "serveAllFonts": true
+  },
+  "styles": {
+    "terrastories-map": {
+      "style": "style.json",
+      "tilejson": {
+        "type": "overlay"
+      }
+    }
+  }
+}

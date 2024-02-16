@@ -2,6 +2,7 @@ services:
   web:
     image: terrastories/terrastories:latest
     restart: unless-stopped
+    env_file: .env
     depends_on:
       - db
     ports:
@@ -21,6 +22,9 @@ services:
     image: terrastories/terrastories-map:latest
     ports:
       - 8080:8080
+    ### UNCOMMENT THE NEXT TWO LINES IF YOU WANT TO USE A CUSTOM MAP PACKAGE
+    # volumes:
+    #   - ./map/data:/data:ro
 
   db:
     image: postgres:11
