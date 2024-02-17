@@ -2,6 +2,8 @@
 
 This repository is your one-stop shop for configuring and running a production-ready instance of Terrastories, completely disconnected from the internet.
 
+Please see our [🛖 Hosting Terrastories offline as a "Field Kit"](https://docs.terrastories.app/setting-up-a-terrastories-server/hosting-environments/hosting-terrastories-offline-as-a-field-kit) documentation for more detailed information on deploying a Terrastories field kit.
+
 > While Terrastories can run entirely offline once your field kit is set up, you will need a stable internet connection to build and configure your instance.
 
 ## Supported Tags

@@ -18,7 +18,7 @@ else
   abort "Currently, Terrastories is only supported on macOS and Linux."
 fi
 
-# Fail fast if no internet cnonection is detected
+# Fail fast if no internet connection is detected
 ping -q -c1 google.com &>/dev/null && true || abort "While we can run the instance offline, an internet connection is required to complete setup."
 
 # Set Colors & Bold
@@ -83,8 +83,8 @@ if ! grep -q "terrastories.local" /etc/hosts; then
   read -p "$(
     cat <<MODHOSTS
 
-We make Terrastories offline at http://terrastories.local. In order for you to
-access your Terrastories instance at that URL, you will need to update your device
+We make Terrastories offline available at http://terrastories.local. In order for you 
+to access your Terrastories instance at that URL, you will need to update your device
 to map traffic from that URL to your running instance.
 
 To do this, you must add terrastories.local to your /etc/hosts file. This requires

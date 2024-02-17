@@ -1,10 +1,12 @@
 # Custom Map Packages
 
-By default, this fieldkit utilizes our default Terrastories Map package. If you want to configure a custom map package to load as the default map package, this README will show you how to configure it.
+By default, this fieldkit utilizes our default Terrastories Map package. If you want to configure the use of a custom map package, this README will show you how to configure it.
+
+> *For information on creating your own custom map package, please see our [Preparing offline map packages](https://docs.terrastories.app/operating-terrastories-offline/preparing-offline-map-packages) documentation.*
 
 ## Prerequisites
 
-Before you begin, ensure that you have a Custom Map Package generated. This should include your tiles in `.pmtiles` or `.mbtiles` format, a `style.json` configuration, and any relevant sprites and fonts. For more information on generating a Custom Map Package, see the [Terrastories docs](https://docs.terrastories.app).
+Before you begin, ensure that you have a Custom Map Package generated. This should include your tiles in `.pmtiles` or `.mbtiles` format, a `style.json` configuration, and any relevant sprites and fonts.
 
 ## Adding Custom Map Packages
 
